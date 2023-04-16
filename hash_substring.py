@@ -10,7 +10,7 @@ def read_input():
         text = input().rstrip()
     # Nolasit no faila
     elif "F" in decis:
-        file= input()
+        file = "06"
         if "a" in file:
             return
         with open(f"./tests/{file}", mode="r") as file:
