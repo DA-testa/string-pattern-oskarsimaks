@@ -37,40 +37,40 @@ def get_occurrences(pattern, text):
     # this function should find the occurances using Rabin Karp alghoritm 
     p_len = len(pattern)
     t_len = len(text)
+    i = 0
+    j = 0
+    d = 256
+    prime = 1000000
+    p = 0 # hash vertiba petternam
+    t = 0 # hash vertiba stringam
 
-    p_hash = hash.string(pattern)
-    t_hash = None
-    occurrences = []
+    for i in range(p_len-1):
+        h = (h * d) % prime
+    
+    for i in range(p_len):
+        p = (d * p + ord(pattern[i])) % prime
+        t = (d * t + ord(text[i])) % prime
 
     for i in range(t_len - p_len + 1):
-        # calculate hash of current substring of text if it has not been calculated already
-        if t_hash is None:
-            t_hash = hash_string(text[i:i+p_len])
-        # if hashes match, check if pattern and substring are equal
-        if p_hash == t_hash:
-            if pattern == text[i:i+p_len]:
-                occurrences.append(i)
-        # if hashes don't match, calculate hash of next substring of text
+        if p==t:
+            for j in range(p_len):
+                if text[i+j] != pattern[j]:
+                    break
+            j+=1
+            if j == p_len:
+                print (i)
         if i < t_len - p_len:
-            t_hash = recalculate_hash(text[i:i+p_len], text[i+p_len], t_hash)
+            t = (d*(t-ord(text[i])*h) + ord(text[i+p_len])) % prime
 
-    
+            if t<0:
+                t = t + prime
+
+
+
+
 
     # and return an iterable variable
-    return occurrences
-
-def hash_string(string):
-    hash_val = 0
-    for char in reversed(string):
-        hash_val = (hash_val * 263 + ord(char)) % (10**9 + 7)
-    return hash_val
-
-
-def recalculate_hash(substring, next_char, old_hash):
-
-    old_char = substring[0]
-    new_hash = (old_hash - ord(old_char) * 263**(len(substring)-1)) * 263 + ord(next_char)
-    return new_hash % (10**9 + 7)
+    
 
 # this part launches the functions
 if __name__ == '__main__':
