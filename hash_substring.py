@@ -14,8 +14,8 @@ def read_input():
         if "a" in file:
             return
         with open(f"./tests/{file}", mode="r") as file:
-            pattern = int(file.readline())
-            text = list(map(int, file.readline().split(" ")))
+            pattern = str(file.readline())
+            text = str(file.readline())
     else:
         return
 
