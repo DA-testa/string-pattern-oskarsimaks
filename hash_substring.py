@@ -10,10 +10,10 @@ def read_input():
         text = input().rstrip()
     # Nolasit no faila
     elif "F" in decis:
-        file = "06"
+        file = str("06")
         if "a" in file:
             return
-        with open(f"./tests/{file}", mode="r") as file:
+        with open(f"./tests/06", mode="r") as file:
             pattern = str(file.readline())
             text = str(file.readline())
     else:
