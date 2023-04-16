@@ -43,6 +43,8 @@ def get_occurrences(pattern, text):
     prime = 1000000
     p = 0 # hash vertiba petternam
     t = 0 # hash vertiba stringam
+    h = 1
+    occurances = []
 
     for i in range(p_len-1):
         h = (h * d) % prime
@@ -58,13 +60,13 @@ def get_occurrences(pattern, text):
                     break
             j+=1
             if j == p_len:
-                print (i)
+                occurances.append(i)
         if i < t_len - p_len:
             t = (d*(t-ord(text[i])*h) + ord(text[i+p_len])) % prime
 
             if t<0:
                 t = t + prime
-
+    return occurances
 
 
 
